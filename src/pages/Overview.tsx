@@ -7,7 +7,7 @@ const Overview = () => {
     <>
       <div>
     <span>India - IST 7:56AM</span>
-    <span>{today}</span>
+    <span>{today.toLocaleDateString()}</span>
       </div>
     </>
   )
