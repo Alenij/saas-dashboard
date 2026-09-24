@@ -1,34 +1,29 @@
-import { Link } from "react-router-dom";
 import logo from "../assets/icons/logo.svg";
 import Arrow from "../assets/icons/down-arrow.svg";
-import dashboardIcon from "../assets/icons/dashboard.svg";
-import userIcon from "../assets/icons/user.svg";
+import close from "../assets/icons/close.svg";
+import { SideNavList } from "../components/SideNavList";
 
-export const SideNav = () => {
+export const SideNav = ({open, onClose}: {open: boolean, onClose:(() => void)}) => {
   return (
     <>
-      <nav className="p-6 w-[315px] h-screen bg-black text-white">
-        <div className="flex gap-5 items-center ">
-          <img src={logo} alt="logo.svg" className="w-5 h-5" />
-          <p className="text-2xl">Project OS</p>
-        </div>
-        <div className="flex items-center gap-0.5 my-6">
-          <button className="bg-[#2F75F6] p-1 rounded-l">Create New</button>
-          <button className="bg-[#2F75F6] p-1 px-2 rounded-r">
-            <img src={Arrow} alt="down-arrow.svg" className="w-3 h-6" />
+
+      <nav className={`p-8 w-[315px] h-screen bg-black text-white ${open ? "sm:block" : "sm:hidden"}`}>
+        <div className="flex justify-between">
+          <div className="flex gap-5 items-center ">
+            <img src={logo} alt="logo.svg" className="w-5 h-5" />
+            <p className="text-2xl">Project OS</p>
+          </div>
+          <button onClick={onClose}>
+            <img src={close} alt={close} className="w-6 h-6 lg:hidden" />
           </button>
         </div>
-        <ul className="flex flex-col gap-1">
-          <li className="flex items-center gap-3 text-sm rounded p-2 hover:bg-[#191919] w-full">
-            <img src={dashboardIcon} alt={dashboardIcon} className="w-3 h-6" />
-            <Link to={"/"}>Dashboard</Link>
-          </li>
-          <li className="flex items-center gap-3 text-sm rounded p-2 hover:bg-[#191919]">
-            <img src={userIcon} alt={userIcon}className="w-3 h-6" />
-
-            <Link to={"/user"}>Users</Link>
-          </li>
-        </ul>
+        <div className="flex items-center gap-0.5 my-6">
+          <button className="bg-[#2F75F6] p-2 rounded-l text-sm font-semibold">Create New</button>
+          <button className="bg-[#2F75F6] p-2 px-3 rounded-r">
+            <img src={Arrow} alt="down-arrow.svg" className="w-4 h-5" />
+          </button>
+        </div>
+        <SideNavList />
       </nav>
     </>
   );
